@@ -1,0 +1,59 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Data
+@using Syncfusion.Blazor.Lists
+@using Syncfusion.Blazor.Buttons
+@using EFListView.Shared.Models
+
+<div class="btn-cls">
+    <SfButton @onclick="Add"> Add </SfButton>
+    <SfButton @onclick="Delete"> Delete the selected item </SfButton>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <SfListView CssClass="listview" TValue="Products" Height="400px" @ref="List">
+            <ListViewFieldSettings Text="ProductName" Id="ProductID"></ListViewFieldSettings>
+            <SfDataManager Url="api/Products" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>
+        </SfListView>
+    </div>
+</div>
+
+@code{
+
+    SfListView<Products> List;
+    List<Products> selectedItems = new List<Products>();
+
+    List<Products> product = new List<Products>()
+    {
+        new Products{ ProductID = 100, ProductName = "Alice"}
+    };
+
+    public void Add()
+    {
+        this.List.AddItem(product, null);
+    }
+
+    async void Delete()
+    {
+        var items = await this.List.GetSelectedItems();
+        if (items.Data != null)
+        {
+            selectedItems = items.Data;
+            Products list = new Products() { ProductID = selectedItems[0].ProductID, ProductName = selectedItems[0].ProductName };
+            await this.List.RemoveItem(list);
+        }
+    }
+}
+
+<style>
+    .listview {
+        border: 1px solid #dddddd;
+    }
+
+    .btn-cls {
+        margin: 0px 5px 10px 5px;
+    }
+</style>
+
