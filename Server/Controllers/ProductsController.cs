@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using EFListView.Shared.DataAccess;
+﻿using EFListView.Shared.DataAccess;
 using EFListView.Shared.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFListView.Server.Controllers
 {
-    
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -20,16 +17,31 @@ namespace EFListView.Server.Controllers
         }
 
         [HttpPost]
-        public object Post([FromBody]Products product)
+        public async Task<IActionResult> Post([FromBody] Products product)
         {
+            if (product == null || string.IsNullOrWhiteSpace(product.ProductName))
+            {
+                return BadRequest("Invalid product data.");
+            }
+
             db.AddProduct(product);
-            return product;
+            return Ok(await db.GetAllProducts().ToListAsync());
         }
 
-        [HttpDelete]
-        public void Delete([FromBody]Products product)
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
+
+            var product = await db.GetAllProducts().FirstOrDefaultAsync(p => p.ProductID == id);
+            if (product == null)
+            {
+                return NotFound("Product not found.");
+            }
+
             db.DeleteProduct(product);
+            return Ok(await db.GetAllProducts().ToListAsync());
         }
+
     }
 }
