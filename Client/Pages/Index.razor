@@ -5,45 +5,59 @@
 @using Syncfusion.Blazor.Lists
 @using Syncfusion.Blazor.Buttons
 @using EFListView.Shared.Models
+@inject HttpClient Http
 
 <div class="btn-cls">
-    <SfButton @onclick="Add"> Add </SfButton>
-    <SfButton @onclick="Delete"> Delete the selected item </SfButton>
+    <SfButton @onclick="Add">Add</SfButton>
+    <SfButton @onclick="Delete">Delete the selected item</SfButton>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <SfListView CssClass="listview" TValue="Products" Height="400px" @ref="List">
-            <ListViewFieldSettings Text="ProductName" Id="ProductID"></ListViewFieldSettings>
+        <SfListView CssClass="listview" TValue="Products" Width="400px" Height="400px" @ref="List" @bind-DataSource="@datasource">
+            <ListViewFieldSettings TValue="Products" Text="ProductName" Id="ProductID"></ListViewFieldSettings>
             <SfDataManager Url="api/Products" Adaptor="Adaptors.WebApiAdaptor" CrossDomain="true"></SfDataManager>
+            <ListViewEvents TValue="Products" Clicked="OnClicked"></ListViewEvents>
         </SfListView>
     </div>
 </div>
 
-@code{
+@code {
+    private SfListView<Products> List;
+    private List<Products> datasource;
+    private List<Products> selectedItems = new List<Products>();
+    private int carCounter = 1;
 
-    SfListView<Products> List;
-    List<Products> selectedItems = new List<Products>();
-
-    List<Products> product = new List<Products>()
+    private async Task Add()
     {
-        new Products{ ProductID = 100, ProductName = "Alice"}
-    };
-
-    public void Add()
-    {
-        this.List.AddItem(product, null);
+        var newProduct = new Products { ProductName = $"Zenvo Automotive {carCounter}" };
+        var response = await Http.PostAsJsonAsync("api/Products", newProduct);
+        if (response.IsSuccessStatusCode)
+        {
+            datasource = await response.Content.ReadFromJsonAsync<List<Products>>();
+            carCounter++;
+        }
     }
 
-    async void Delete()
+    private async Task Delete()
     {
-        var items = await this.List.GetSelectedItems();
-        if (items.Data != null)
+        if (selectedItems.Count == 0)
         {
-            selectedItems = items.Data;
-            Products list = new Products() { ProductID = selectedItems[0].ProductID, ProductName = selectedItems[0].ProductName };
-            await this.List.RemoveItem(list);
+            return;
         }
+
+        var productId = selectedItems[0].ProductID;
+        var response = await Http.DeleteAsync($"api/Products/{productId}");
+        if (response.IsSuccessStatusCode)
+        {
+            List.RemoveItems(selectedItems);
+        }
+    }
+
+    private void OnClicked(ClickEventArgs<Products> args)
+    {
+        selectedItems.Clear();
+        selectedItems.Add(args.ItemData);
     }
 }
 
@@ -56,4 +70,3 @@
         margin: 0px 5px 10px 5px;
     }
 </style>
-

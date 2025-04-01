@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using EFListView.Shared.Models;
-using EFListView.Shared.DataAccess;
+﻿using EFListView.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFListView.Shared.DataAccess
@@ -10,7 +7,7 @@ namespace EFListView.Shared.DataAccess
     {
 
         DataContext db = new DataContext();
-        
+
         public DbSet<Products> GetAllProducts()
         {
             try
@@ -22,7 +19,7 @@ namespace EFListView.Shared.DataAccess
                 throw;
             }
         }
-  
+
         public void AddProduct(Products products)
         {
             try
@@ -39,7 +36,7 @@ namespace EFListView.Shared.DataAccess
         public void DeleteProduct(Products products)
         {
             try
-            {             
+            {
                 db.Products.Remove(products);
                 db.SaveChanges();
             }
