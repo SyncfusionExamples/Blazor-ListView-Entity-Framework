@@ -1,4 +1,4 @@
-# Blazor-ListView-Entity-Framework
+# Blazor ListView with Entity Framework
 
 ## Project Overview
 The purpose of this project is to help developers understand how to build a **data‑driven Blazor application** using Entity Framework in combination with the Syncfusion [Blazor ListView](https://www.syncfusion.com/blazor-components/blazor-listview) component. It serves as a reference for binding database content to ListView controls and displaying it in an interactive UI.
