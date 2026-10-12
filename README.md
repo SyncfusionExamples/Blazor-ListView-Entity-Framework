@@ -1,12 +1,7 @@
-# Blazor-ListView-Entity-Framework
-
-A quick getting started project to create an Entity Framework application with Blazor ListView component. The Blazor ListView Component is a list-like interface that **Repository Description**  
-This repository contains a **quick‑start Blazor application** that demonstrates how to integrate the Syncfusion **Blazor ListView** component with **Entity Framework**.
-
-The Blazor ListView is a list‑like UI component that allows users to select single or multiple items and display data in an interactive, hierarchical structure across different layouts and views. This project shows how database‑driven data can be retrieved using Entity Framework and presented using the Blazor ListView component.
+# Blazor ListView with Entity Framework
 
 ## Project Overview
-The purpose of this project is to help developers understand how to build a **data‑driven Blazor application** using Entity Framework in combination with the Syncfusion Blazor ListView component. It serves as a reference for binding database content to ListView controls and displaying it in an interactive UI.
+The purpose of this project is to help developers understand how to build a **data‑driven Blazor application** using Entity Framework in combination with the Syncfusion [Blazor ListView](https://www.syncfusion.com/blazor-components/blazor-listview) component. It serves as a reference for binding database content to ListView controls and displaying it in an interactive UI.
 
 ## Features
 - Integration of **Syncfusion Blazor ListView**
@@ -18,13 +13,9 @@ The purpose of this project is to help developers understand how to build a **da
 
 ## Prerequisites
 Ensure the following requirements are met before running this project:
-- **Visual Studio 2019** (version 16.6 or later)
-- **.NET Core SDK 3.1.3**
+- Visual Studio 2022 or Visual Studio Code
+- .NET SDK compatible with the project's target framework
 - SQL Server LocalDB (for the sample database)
-- Syncfusion Blazor packages
-- Valid Syncfusion license key (if required)
-
-> **Note:** .NET Core SDK 3.1.3 requires Visual Studio 2019 version 16.6 or newer.
 
 ## Installation
 
@@ -33,6 +24,7 @@ Clone the repository and navigate to the project directory:
 ```bash
 git clone https://github.com/SyncfusionExamples/Blazor-ListView-Entity-Framework.git
 ```
+
 ### Configure Database Connection
 Update the database connection string in the following file:
 ```bash
@@ -47,48 +39,61 @@ optionsBuilder.UseSqlServer(
     Connect Timeout=30");
 ```
 Ensure the database file path matches your local environment.
+
 ### Running the Application
-Run the project using Visual Studio 2019.
-Once the application starts, open the browser to view the Blazor ListView populated with data retrieved through Entity Framework.
+**Visual Studio 2022**
 
-## Configuration
-The ListView and Entity Framework configuration is handled through:
-- Entity Framework DbContext configuration
-- Blazor component binding logic
-- ListView property and selection configuration
-You can further customize:
-- Data models
-- ListView templates and layouts
-- Selection and interaction behavior
+1. Open the solution file:
 
-## Documentation
-- General Syncfusion documentation:
-https://help.syncfusion.com/
-- Blazor Introduction:
-https://blazor.syncfusion.com/documentation/introduction
-- Blazor ListView – Getting Started:
-https://blazor.syncfusion.com/documentation/listview/getting-started
+   `EFListView.sln`
 
-## Additional Resources
-- Syncfusion Blazor ListView product overview:
-https://www.syncfusion.com/blazor-components/blazor-listview
-- Syncfusion Blazor community forums:
-https://www.syncfusion.com/forums/blazor-components
+2. Restore the NuGet packages by rebuilding the solution.
+3. Set the startup project to:
 
-## Troubleshooting
-- Ensure the database file path is correct in the connection string.
-- Verify that SQL Server LocalDB is installed.
-- Restore NuGet packages if build errors occur.
-- Rebuild the solution if UI changes are not reflected.
+   `EFListView.Server`
 
-## Support
+4. Build the solution.
+5. Run the application using `Ctrl+F5`.
+6. Open the application URL displayed by Visual Studio after launch.
+7. Verify that the ListView displays product records retrieved through Entity Framework and the Web API.
 
-Product support is available for through following mediums.
+**Visual Studio Code**
 
-* Creating incident in Syncfusion [Direct-trac](https://www.syncfusion.com/support/directtrac/incidents?utm_source=npm&utm_campaign=filemanager) support system or [Community forum](https://www.syncfusion.com/forums/essential-js2?utm_source=npm&utm_campaign=filemanager).
-* New [GitHub issue](https://github.com/syncfusion/ej2-javascript-ui-controls/issues/new).
-* Ask your query in [Stack Overflow](https://stackoverflow.com/?utm_source=npm&utm_campaign=filemanager) with tag `syncfusion` and `ej2`.
+1. Open the repository folder in Visual Studio Code.
+2. Open the integrated terminal.
+3. Navigate to the server project directory:
+
+```bash
+cd Server
+```
+
+4. Restore the NuGet packages:
+
+```bash
+dotnet restore
+```
+
+5. Run the project:
+
+```bash
+dotnet run
+```
+
+6. Open the local URL displayed in the terminal after the application starts.
+7. Verify that the ListView displays product records retrieved through Entity Framework and the Web API.
+
+## Project Structure
+
+- `Client/Pages/Index.razor` — Renders the ListView and handles product loading, selection, addition, and deletion.
+- `Server/Controllers/ProductsController.cs` — Provides the Web API operations for retrieving, adding, and deleting products.
+- `Shared/DataAccess/DataContext.cs` — Configures the Entity Framework context and SQL Server LocalDB connection.
+
+## Support and Feedback
+
+- For general product questions, visit the [Syncfusion Community Forum](https://www.syncfusion.com/forums) or [Syncfusion Support](https://www.syncfusion.com/support).
+- To report an issue specific to this sample, open a GitHub issue in this repository.
+- Official documentation: [Blazor ListView getting started documentation](https://blazor.syncfusion.com/documentation/listview/getting-started)
 
 ## License
 
-Check the license detail [here](https://github.com/syncfusion/ej2-javascript-ui-controls/blob/master/license).
+This is a Syncfusion sample project provided to demonstrate product usage. Review the [Syncfusion license terms](https://www.syncfusion.com/sales/pricing?category=ui-components) before using Syncfusion components in your own applications.
