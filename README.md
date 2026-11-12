@@ -31,16 +31,15 @@ Ensure the following requirements are met before running this project:
 2. Open the solution file (EFListView.sln) in Visual Studio 2022 or Visual Studio Code.
 
 ### Configure the Database Connection
-Update the database connection string in the following file:
-`Shared/DataAccess/DataContext.cs`
-Example connection string:
+The connection string is defined in `Shared/DataAccess/DataContext.cs`. It uses the SQL Server `|DataDirectory|` substitution, which resolves to the `Shared/App_Data` folder at runtime, so the sample works from **any clone location** without editing the path:
 ```csharp
 optionsBuilder.UseSqlServer(
   @"Data Source=(LocalDB)\MSSQLLocalDB;
-    AttachDbFilename='D:\Blazor-ListView-Entity-Framework\Shared\App_Data\NORTHWND.MDF';
+    AttachDbFilename='|DataDirectory|\NORTHWND.MDF';
     Integrated Security=True;
     Connect Timeout=30");
 ```
+If your database is hosted elsewhere (e.g., SQL Server Express or a remote server), replace the connection string with your server details.
 
 ### Run the Application
 1. Build the solution.
