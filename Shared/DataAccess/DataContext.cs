@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using EFListView.Shared.Models;
 
 namespace EFListView.Shared.DataAccess
