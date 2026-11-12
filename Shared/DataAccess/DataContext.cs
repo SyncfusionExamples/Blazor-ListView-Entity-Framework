@@ -11,7 +11,7 @@ namespace EFListView.Shared.DataAccess
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\Blazor-ListView-Entity-Framework\EFListView\Shared\App_Data\NORTHWND.MDF';Integrated Security=True;Connect Timeout=30");
+                optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\Blazor-ListView-Entity-Framework\Shared\App_Data\NORTHWND.MDF';Integrated Security=True;Connect Timeout=30");
             }
         }
     }

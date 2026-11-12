@@ -32,12 +32,12 @@ Ensure the following requirements are met before running this project:
 
 ### Configure the Database Connection
 Update the database connection string in the following file:
-`EFListView/Shared/DataAccess/DataContext.cs`
+`Shared/DataAccess/DataContext.cs`
 Example connection string:
 ```csharp
 optionsBuilder.UseSqlServer(
   @"Data Source=(LocalDB)\MSSQLLocalDB;
-    AttachDbFilename='D:\Blazor-ListView-Entity-Framework\EFListView\Shared\App_Data\NORTHWND.MDF';
+    AttachDbFilename='D:\Blazor-ListView-Entity-Framework\Shared\App_Data\NORTHWND.MDF';
     Integrated Security=True;
     Connect Timeout=30");
 ```

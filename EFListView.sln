@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.35906.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Server", "EFListView\Server\EFListView.Server.csproj", "{65219B69-C257-40B7-A8EF-136215839A5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Server", "Server\EFListView.Server.csproj", "{65219B69-C257-40B7-A8EF-136215839A5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Client", "EFListView\Client\EFListView.Client.csproj", "{09A88093-28B9-455D-9AC8-C6EF161707D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Client", "Client\EFListView.Client.csproj", "{09A88093-28B9-455D-9AC8-C6EF161707D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Shared", "EFListView\Shared\EFListView.Shared.csproj", "{E0A9F63F-F6FA-4A26-921A-E8A6D01B8E46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFListView.Shared", "Shared\EFListView.Shared.csproj", "{E0A9F63F-F6FA-4A26-921A-E8A6D01B8E46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
