@@ -10,7 +10,8 @@
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="EFListView.Client.styles.css" rel="stylesheet" /> -->
     <link href="_content/Syncfusion.Blazor.Themes/bootstrap5.css" rel="stylesheet" />
-    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+    <link rel="preload" id="webassembly" />
+    <script type="importmap"></script>
 </head>
 
 <body>
@@ -21,7 +22,8 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/Syncfusion.Blazor.Core/scripts/syncfusion-blazor.min.js" type="text/javascript"></script>
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
 </body>
 
 </html>
